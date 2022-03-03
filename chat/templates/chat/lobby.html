@@ -8,5 +8,20 @@
   </head>
   <body>
     <h1>Lobby Page</h1>
+    <button id="trig-socket">Trig Socket Connection</button>
+    <script type="text/javascript">
+      const trigBtn = document.getElementById("trig-socket");
+      trigBtn.addEventListener("click", trigSocket);
+      function trigSocket() {
+        let url = `ws://${window.location.host}/ws/socket-server/`;
+
+        const chatSocket = new WebSocket(url);
+
+        chatSocket.onmessage = (e) => {
+          let data = JSON.parse(e.data);
+          console.log("Data:", data);
+        };
+      }
+    </script>
   </body>
 </html>
